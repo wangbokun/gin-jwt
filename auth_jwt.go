@@ -10,6 +10,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+    "github.com/wangbokun/go/log"
 )
 
 // MapClaims type that uses the map[string]interface{} for JSON decoding
@@ -358,7 +359,11 @@ func (mw *GinJWTMiddleware) MiddlewareFunc() gin.HandlerFunc {
 
 func (mw *GinJWTMiddleware) middlewareImpl(c *gin.Context) {
 
+    log.Debug("this is gin jwt start ")
+
     if c.Request.Method == "OPTIONS" {
+        log.Debug("this is gin jwt start, options====== ")
+        c.JSON(http.StatusOK, "Options Request!")
         c.Next()
     }
 	claims, err := mw.GetClaimsFromJWT(c)
