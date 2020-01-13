@@ -359,7 +359,9 @@ func (mw *GinJWTMiddleware) MiddlewareFunc() gin.HandlerFunc {
 
 func (mw *GinJWTMiddleware) middlewareImpl(c *gin.Context) {
 
-    log.Debug("this is gin jwt start %#v",c.Request.Method)
+    method := c.Request.Method
+    log.Debug("this is gin jwt start")
+    log.Debug("Method is  %#v",method)
 
     if c.Request.Method == "OPTIONS" {
         log.Debug("this is gin jwt start, options====== ")
