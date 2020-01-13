@@ -365,9 +365,9 @@ func (mw *GinJWTMiddleware) middlewareImpl(c *gin.Context) {
 
     if c.Request.Method == "OPTIONS" {
         log.Debug("this is gin jwt start, options====== ")
-        c.JSON(http.StatusOK, "Options Request!")
         c.Next()
     }
+    log.Debug("----------")
 	claims, err := mw.GetClaimsFromJWT(c)
 	if err != nil {
 		mw.unauthorized(c, http.StatusUnauthorized, mw.HTTPStatusMessageFunc(err, c))
